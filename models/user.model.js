@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     },
     count: Number,
     log: [{
+      id: String,
       description: {
         type: String,
         required: true

@@ -49,7 +49,7 @@ router
       }
       date = new Date(date).toDateString();
     }
-
+    
     User.findByIdAndUpdate(
       _id,
       { $push: { log: { description, duration, date } }, $inc: { count: 1 } },

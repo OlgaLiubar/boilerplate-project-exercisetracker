@@ -9,6 +9,7 @@ const usersRouter = require("./routes/users");
 
 require("dotenv").config();
 
+app.use(express.urlencoded({ extended: true }))
 app.use(cors());
 app.use(express.static("public"));
 app.use(express.json());
@@ -26,13 +27,6 @@ connection.once("open", () => {
 });
 
 app.use("/api/users", usersRouter);
-
-app.use((err, req, res, next) => {
-  if (isCelebrateError(err)) {
-    console.log(err);
-  }
-  next(err);
-});
 
 app.use(errors());
 

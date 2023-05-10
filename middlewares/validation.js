@@ -8,9 +8,10 @@ const validateCreateUserBody = celebrate({
 
 const validateCreateExerciseBody = celebrate({
   body: Joi.object().keys({
+    id: Joi.string(),
     description: Joi.string().required().min(2),
     duration: Joi.number().required(),
-    date: Joi.string(),
+    date: Joi.string().allow('').optional(),
   }),
 });
 
