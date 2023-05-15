@@ -52,7 +52,7 @@ router
     
     User.findByIdAndUpdate(
       _id,
-      { $push: { log: { description, duration, date } }, $inc: { count: 1 } },
+      { $push: { log: { description, duration, date } } },
       { new: true }
     )
       .then((user) => {
@@ -86,6 +86,9 @@ router.route("/:_id/logs").get((req, res, next) => {
       };
 
       const logsArray = filterLogsByDateRange(user.log, req.query);
+
+      req.query.limit ?
+      response = { ...response, count: logsArray.length, log: logsArray.slice(0, req.query.limit) } :
       response = { ...response, count: logsArray.length, log: logsArray };
 
       return res.json(response);

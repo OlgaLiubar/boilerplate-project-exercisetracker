@@ -1,7 +1,6 @@
 function filterLogsByDateRange(logsArray, queryParams) {
-  const fromDate = queryParams?.from ? new Date(queryParams.from) : null;
-  const toDate = queryParams?.to ? new Date(queryParams.to) : null;
-  const limit = queryParams?.limit || logsArray.length;
+  const fromDate = queryParams?.from ? new Date(new Date(queryParams?.from).toDateString()) : null;
+  const toDate = queryParams?.to ? new Date(new Date(queryParams.to).toDateString()) : null;
 
   let filteredLogs = logsArray;
 
@@ -20,8 +19,7 @@ function filterLogsByDateRange(logsArray, queryParams) {
   else {
     filteredLogs = sortByDate(filteredLogs);
   }
-
-  return filteredLogs.slice(0, limit);
+  return filteredLogs
 }
 
 const sortByDate = (arr) => {
